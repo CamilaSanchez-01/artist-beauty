@@ -139,7 +139,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Si configuras CLOUDINARY_URL en variables de entorno se usa Cloudinary,
 # si no, las imágenes se manejan localmente o por URL directa.
 # ============================
-CLOUDINARY_URL = 'cloudinary://976693449545124:rZ5_Eakp_mbc9Nf5Tot61bRHRvo@Artist_beauty'
+CLOUDINARY_URL = config('CLOUDINARY_URL', default='')
 if CLOUDINARY_URL:
     STORAGES['default'] = {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
