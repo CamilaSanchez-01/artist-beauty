@@ -1,0 +1,39 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}Productos — Artist Beauty{% endblock %}
+
+{% block content %}
+<section class="section">
+  <h1>Todos los productos</h1>
+
+  <form method="get" class="search-bar">
+    <input type="search" name="q" placeholder="Buscar producto, marca…" value="{{ q }}">
+    <select name="category">
+      <option value="">Todas las categorías</option>
+      {% for cat in categories %}
+        <option value="{{ cat.slug }}" {% if cat.slug == current_category %}selected{% endif %}>{{ cat.name }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit" class="btn">Buscar</button>
+  </form>
+
+  <div class="grid">
+    {% for product in products %}
+      <a href="{{ product.get_absolute_url }}" class="card product-card">
+        {% if product.display_image %}
+          <img src="{{ product.display_image }}" alt="{{ product.name }}" loading="lazy">
+        {% endif %}
+        <div class="card-body">
+          {% if product.is_bestseller %}<span class="badge">Best seller</span>{% endif %}
+          <h3>{{ product.name }}</h3>
+          <p class="muted">{{ product.artist.brand_name }}{% if product.category %} · {{ product.category.name }}{% endif %}</p>
+          <p class="price">${{ product.price }} USD</p>
+          <p>⭐ {{ product.rating }}</p>
+        </div>
+      </a>
+    {% empty %}
+      <p>No se encontraron productos.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

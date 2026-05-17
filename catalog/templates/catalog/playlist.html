@@ -1,0 +1,95 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+
+{% block title %}Playlist Artist Beauty — Canciones icónicas{% endblock %}
+
+{% block content %}
+<section class="hero" style="background:linear-gradient(135deg,#2c1f30,#8b6fc8);">
+  <h1>♪ Artist Beauty Playlist</h1>
+  <p>Las canciones icónicas de las artistas detrás de tus marcas favoritas.
+     Da clic en cualquiera para reproducirla.</p>
+</section>
+
+<section class="section">
+  <div class="playlist-grid">
+    {% for artist in artists %}
+      <div class="playlist-row" data-song-url="{{ artist.iconic_song_url|escape }}"
+           data-song-title="{{ artist.iconic_song_title|escape }}"
+           data-artist-name="{{ artist.name|escape }}"
+           data-brand-name="{{ artist.brand_name|escape }}">
+        <div class="play-circle" data-index="{{ forloop.counter0 }}">▶</div>
+        {% if artist.display_image %}
+          <img src="{{ artist.display_image }}" class="playlist-thumb" alt="">
+        {% else %}
+          <div class="placeholder playlist-thumb">{{ artist.name|first }}</div>
+        {% endif %}
+        <div class="playlist-info">
+          <p class="playlist-song">{{ artist.iconic_song_title }}</p>
+          <p class="playlist-artist">{{ artist.name }} · <a href="{{ artist.get_absolute_url }}">{{ artist.brand_name }}</a></p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Reproductor flotante -->
+<div class="floating-player" id="floating-player">
+  <div class="player-info">
+    <div class="vinyl-icon">♪</div>
+    <div>
+      <p class="player-song" id="fp-song">Selecciona una canción</p>
+      <p class="player-artist" id="fp-artist">—</p>
+    </div>
+  </div>
+  <div class="player-actions">
+    <button class="btn btn-play" id="fp-prev">⏮</button>
+    <button class="btn btn-play" id="fp-play">▶</button>
+    <button class="btn btn-play" id="fp-next">⏭</button>
+  </div>
+  <audio id="fp-audio"></audio>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const rows = Array.from(document.querySelectorAll('.playlist-row'));
+  const audio = document.getElementById('fp-audio');
+  const fpSong = document.getElementById('fp-song');
+  const fpArtist = document.getElementById('fp-artist');
+  const fpPlay = document.getElementById('fp-play');
+  const fpPrev = document.getElementById('fp-prev');
+  const fpNext = document.getElementById('fp-next');
+  const player = document.getElementById('floating-player');
+  let current = -1;
+
+  function loadSong(index) {
+    if (index < 0 || index >= rows.length) return;
+    current = index;
+    const row = rows[index];
+    audio.src = row.dataset.songUrl;
+    fpSong.textContent = row.dataset.songTitle;
+    fpArtist.textContent = row.dataset.artistName + ' · ' + row.dataset.brandName;
+    audio.play().catch(() => {});
+    rows.forEach(r => r.classList.remove('playing'));
+    row.classList.add('playing');
+    player.classList.add('playing');
+  }
+
+  rows.forEach((row, i) => {
+    row.querySelector('.play-circle').addEventListener('click', () => loadSong(i));
+    row.addEventListener('click', (e) => {
+      if (!e.target.closest('a')) loadSong(i);
+    });
+  });
+
+  fpPlay.addEventListener('click', () => {
+    if (audio.src) { audio.paused ? audio.play() : audio.pause(); }
+    else if (rows.length) loadSong(0);
+  });
+  fpPrev.addEventListener('click', () => loadSong(current - 1));
+  fpNext.addEventListener('click', () => loadSong(current + 1));
+  audio.addEventListener('play', () => fpPlay.textContent = '⏸');
+  audio.addEventListener('pause', () => fpPlay.textContent = '▶');
+  audio.addEventListener('ended', () => loadSong(current + 1));
+</script>
+{% endblock %}

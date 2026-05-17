@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Artist Beauty{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'catalog/css/style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="{% url 'home' %}" class="logo">✨ Artist Beauty</a>
+      <nav>
+        <a href="{% url 'home' %}">Inicio</a>
+        <a href="{% url 'product_list' %}">Productos</a>
+        <a href="{% url 'playlist' %}">♪ Playlist</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'wishlist' %}">♥ Favoritos</a>
+          <a href="{% url 'artist_create' %}">+ Artista</a>
+          <a href="{% url 'product_create' %}">+ Producto</a>
+          <a href="/admin/">Admin</a>
+          <form method="post" action="{% url 'logout' %}" style="display:inline">
+            {% csrf_token %}
+            <button type="submit" class="link-button">Salir ({{ user.username }})</button>
+          </form>
+        {% else %}
+          <a href="{% url 'login' %}">Entrar</a>
+          <a href="{% url 'signup' %}">Registrarse</a>
+        {% endif %}
+        <a href="/api/" class="api-link">API</a>
+      </nav>
+    </div>
+  </header>
+
+  {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <div class="message {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <p>Artist Beauty © 2026 — Proyecto académico Meta 4.3 · Ana</p>
+    <p><a href="/api/">API REST</a> · <a href="/admin/">Panel Admin</a></p>
+  </footer>
+
+  <div class="floating-player persistent-player" id="persistent-player" aria-live="polite">
+    <div class="player-info">
+      <div class="vinyl-icon">♪</div>
+      <div>
+        <p class="player-song" id="persist-song">Canción en reproducción</p>
+        <p class="player-artist" id="persist-artist">—</p>
+      </div>
+    </div>
+    <div class="player-actions">
+      <button class="btn btn-play" id="persist-play">▶</button>
+    </div>
+    <audio id="persistent-audio" preload="metadata" loop></audio>
+  </div>
+
+  {% block scripts %}{% endblock %}
+  <script src="{% static 'catalog/js/player-persistent.js' %}"></script>
+</body>
+</html>

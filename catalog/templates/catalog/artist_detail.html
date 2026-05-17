@@ -1,0 +1,108 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+
+{% block title %}{{ artist.brand_name }} — {{ artist.name }}{% endblock %}
+
+{% block content %}
+<section class="artist-hero">
+  {% if artist.display_image %}
+    <img src="{{ artist.display_image }}" alt="{{ artist.name }}" class="artist-photo">
+  {% endif %}
+  <div>
+    <h1>{{ artist.brand_name }}</h1>
+    <p class="muted">creada por {{ artist.name }}</p>
+    <p>{{ artist.bio }}</p>
+
+    {% if user.is_authenticated %}
+      <p>
+        <a href="{% url 'artist_edit' artist.slug %}" class="btn">Editar</a>
+        <a href="{% url 'artist_delete' artist.slug %}" class="btn btn-danger">Eliminar</a>
+      </p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Reproductor automático de la canción icónica -->
+<section class="player-bar" id="audio-player-bar"
+         data-song-url="{{ artist.iconic_song_url|escape }}"
+         data-song-title="{{ artist.iconic_song_title|escape }}"
+         data-artist-name="{{ artist.name|escape }}">
+  <div class="player-info">
+    <div class="vinyl-icon">♪</div>
+    <div>
+      <p class="player-song">{{ artist.iconic_song_title }}</p>
+      <p class="player-artist">{{ artist.name }}</p>
+    </div>
+  </div>
+  <div class="player-actions">
+    <button id="play-btn" class="btn btn-play">▶ Reproducir</button>
+    <span id="player-status" class="muted">Listo</span>
+  </div>
+  <audio id="iconic-song" src="{{ artist.iconic_song_url }}" preload="metadata"></audio>
+</section>
+
+<section class="section">
+  <h2>🔥 Top 5 Best Sellers</h2>
+  <p class="muted">Al cargar esta sección suena la canción icónica de {{ artist.name }}.</p>
+  <div class="grid bestseller-grid" id="bestseller-grid">
+    {% for product in bestsellers %}
+      <a href="{{ product.get_absolute_url }}" class="card product-card bestseller">
+        <span class="rank">#{{ forloop.counter }}</span>
+        {% if product.display_image %}
+          <img src="{{ product.display_image }}" alt="{{ product.name }}" loading="lazy">
+        {% endif %}
+        <div class="card-body">
+          <h3>{{ product.name }}</h3>
+          {% if product.category %}
+            <p class="muted">{{ product.category.name }}</p>
+          {% endif %}
+          <p class="price">${{ product.price }} USD</p>
+          <p>⭐ {{ product.rating }}</p>
+        </div>
+      </a>
+    {% empty %}
+      <p>Esta marca aún no tiene best sellers marcados.</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% if artist.iconic_song_lyrics %}
+<section class="section lyrics-section">
+  <h2>♪ Letra · {{ artist.iconic_song_title }}</h2>
+  <div class="lyrics-box">
+    <pre>{{ artist.iconic_song_lyrics }}</pre>
+  </div>
+</section>
+{% endif %}
+
+{% if other_products %}
+<section class="section">
+  <h2>Más productos de {{ artist.brand_name }}</h2>
+  <div class="grid">
+    {% for product in other_products %}
+      <a href="{{ product.get_absolute_url }}" class="card product-card">
+        {% if product.display_image %}
+          <img src="{{ product.display_image }}" alt="{{ product.name }}" loading="lazy">
+        {% endif %}
+        <div class="card-body">
+          <h3>{{ product.name }}</h3>
+          <p class="price">${{ product.price }} USD</p>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+window.PAGE_PLAYER_DATA = {
+  songUrl: "{{ artist.iconic_song_url|escapejs }}",
+  songTitle: "{{ artist.iconic_song_title|escapejs }}",
+  artistName: "{{ artist.name|escapejs }}",
+  brandName: "{{ artist.brand_name|escapejs }}"
+};
+</script>
+<script src="{% static 'catalog/js/player.js' %}"></script>
+{% endblock %}

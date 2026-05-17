@@ -1,0 +1,24 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}Crear cuenta — Artist Beauty{% endblock %}
+
+{% block content %}
+<section class="section form-section" style="max-width:480px; margin:auto;">
+  <h1>Crear cuenta</h1>
+  <form method="post" class="big-form">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-field">
+        <label>{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}<small class="muted">{{ field.help_text|safe }}</small>{% endif %}
+        {% for error in field.errors %}<p class="error">{{ error }}</p>{% endfor %}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Registrarme</button>
+  </form>
+  <p class="muted" style="margin-top:1rem;">
+    ¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión</a>.
+  </p>
+</section>
+{% endblock %}

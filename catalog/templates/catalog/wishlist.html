@@ -1,0 +1,28 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}Mis favoritos — Artist Beauty{% endblock %}
+
+{% block content %}
+<section class="section">
+  <h1>♥ Mis favoritos</h1>
+  <p class="muted">Productos que guardaste para ver luego.</p>
+
+  <div class="grid">
+    {% for item in items %}
+      <a href="{{ item.product.get_absolute_url }}" class="card product-card">
+        {% if item.product.display_image %}
+          <img src="{{ item.product.display_image }}" alt="{{ item.product.name }}" loading="lazy">
+        {% endif %}
+        <div class="card-body">
+          <h3>{{ item.product.name }}</h3>
+          <p class="muted">{{ item.product.artist.brand_name }}</p>
+          <p class="price">${{ item.product.price }} USD</p>
+          <p class="muted">Agregado el {{ item.added_at|date:"d M Y" }}</p>
+        </div>
+      </a>
+    {% empty %}
+      <p>Aún no tienes favoritos. <a href="{% url 'product_list' %}">Explora el catálogo</a>.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

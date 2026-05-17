@@ -1,0 +1,15 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}Eliminar — Artist Beauty{% endblock %}
+
+{% block content %}
+<section class="section">
+  <h1>¿Eliminar este {{ type }}?</h1>
+  <p>Vas a eliminar <strong>{{ object }}</strong>. Esta acción no se puede deshacer.</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a href="javascript:history.back()" class="btn">Cancelar</a>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}Iniciar sesión — Artist Beauty{% endblock %}
+
+{% block content %}
+<section class="section form-section" style="max-width:420px; margin:auto;">
+  <h1>Iniciar sesión</h1>
+  <form method="post" class="big-form">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-field">
+        <label>{{ field.label }}</label>
+        {{ field }}
+        {% for error in field.errors %}<p class="error">{{ error }}</p>{% endfor %}
+      </div>
+    {% endfor %}
+    {% if form.non_field_errors %}
+      <p class="error">{{ form.non_field_errors }}</p>
+    {% endif %}
+    <button type="submit" class="btn btn-primary">Entrar</button>
+  </form>
+  <p class="muted" style="margin-top:1rem;">
+    Usa el usuario administrador que creaste con <code>createsuperuser</code>.
+  </p>
+</section>
+{% endblock %}

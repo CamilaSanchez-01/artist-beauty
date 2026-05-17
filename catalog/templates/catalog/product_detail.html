@@ -1,0 +1,127 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}{{ product.name }} — {{ product.artist.brand_name }}{% endblock %}
+
+{% block content %}
+<section class="product-detail">
+  {% if product.display_image %}
+    <img src="{{ product.display_image }}" alt="{{ product.name }}" class="product-photo">
+  {% endif %}
+  <div>
+    {% if product.is_bestseller %}<span class="badge">Best seller</span>{% endif %}
+    <h1>{{ product.name }}</h1>
+    <p class="muted">
+      <a href="{{ product.artist.get_absolute_url }}">{{ product.artist.brand_name }}</a>
+      por {{ product.artist.name }}
+    </p>
+    {% if product.category %}
+      <p>Categoría: <strong>{{ product.category.name }}</strong></p>
+    {% endif %}
+    <p class="price-big">${{ product.price }} USD</p>
+    <p class="muted">Música recomendada: <strong>{{ page_song_title }}</strong> · se reproduce automáticamente en bucle.</p>
+    <p>⭐ {{ product.rating }} · Stock: {{ product.stock }}
+       {% if product.reviews_count %}
+         · 📝 {{ product.reviews_count }} review{{ product.reviews_count|pluralize:"s" }}
+         ({{ product.average_review_rating }} prom.)
+       {% endif %}
+    </p>
+    <p>{{ product.description }}</p>
+
+    {% if user.is_authenticated %}
+      <button id="wish-btn" class="btn {% if in_wishlist %}btn-primary{% endif %}"
+              data-url="{% url 'wishlist_toggle' product.slug %}"
+              data-csrf="{{ csrf_token }}">
+        <span id="wish-icon">{% if in_wishlist %}♥{% else %}♡{% endif %}</span>
+        <span id="wish-text">{% if in_wishlist %}En favoritos{% else %}Agregar a favoritos{% endif %}</span>
+      </button>
+    {% else %}
+      <a href="{% url 'login' %}?next={{ request.path }}" class="btn">♡ Inicia sesión para guardar</a>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+      <p style="margin-top:1rem;">
+        <a href="{% url 'product_edit' product.slug %}" class="btn">Editar</a>
+        <a href="{% url 'product_delete' product.slug %}" class="btn btn-danger">Eliminar</a>
+      </p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section">
+  <h2>📝 Reviews ({{ reviews|length }})</h2>
+
+  {% if review_form %}
+    <form method="post" class="review-form">
+      {% csrf_token %}
+      <h3>{% if user_review %}Editar tu review{% else %}Escribe tu review{% endif %}</h3>
+      <div class="form-field">
+        <label>Calificación</label>
+        {{ review_form.rating }}
+      </div>
+      <div class="form-field">
+        <label>Comentario</label>
+        {{ review_form.comment }}
+      </div>
+      <button type="submit" class="btn btn-primary">
+        {% if user_review %}Actualizar review{% else %}Publicar review{% endif %}
+      </button>
+    </form>
+  {% else %}
+    <p class="muted">
+      <a href="{% url 'login' %}?next={{ request.path }}">Inicia sesión</a>
+      o <a href="{% url 'signup' %}">regístrate</a> para escribir una review.
+    </p>
+  {% endif %}
+
+  <div class="reviews-list">
+    {% for r in reviews %}
+      <div class="review-card">
+        <p class="review-header">
+          <strong>{{ r.user.username }}</strong>
+          <span class="stars">{% for i in "12345"|make_list %}{% if forloop.counter <= r.rating %}★{% else %}☆{% endif %}{% endfor %}</span>
+          <span class="muted">· {{ r.created_at|date:"d M Y" }}</span>
+        </p>
+        <p>{{ r.comment }}</p>
+      </div>
+    {% empty %}
+      <p class="muted">Sé la primera en dejar una review.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+window.PAGE_PLAYER_DATA = {
+  songUrl: "{{ page_song_url|escapejs }}",
+  songTitle: "{{ page_song_title|escapejs }}",
+  artistName: "{{ product.artist.name|escapejs }}",
+  brandName: "{{ product.artist.brand_name|escapejs }}"
+};
+</script>
+<script>
+  // Toggle de wishlist vía AJAX
+  const wishBtn = document.getElementById('wish-btn');
+  if (wishBtn) {
+    wishBtn.addEventListener('click', async () => {
+      const res = await fetch(wishBtn.dataset.url, {
+        method: 'POST',
+        headers: { 'X-CSRFToken': wishBtn.dataset.csrf },
+      });
+      const data = await res.json();
+      const icon = document.getElementById('wish-icon');
+      const text = document.getElementById('wish-text');
+      if (data.in_wishlist) {
+        wishBtn.classList.add('btn-primary');
+        icon.textContent = '♥';
+        text.textContent = 'En favoritos';
+      } else {
+        wishBtn.classList.remove('btn-primary');
+        icon.textContent = '♡';
+        text.textContent = 'Agregar a favoritos';
+      }
+    });
+  }
+</script>
+{% endblock %}

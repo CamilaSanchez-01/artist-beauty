@@ -1,0 +1,22 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}{{ title }} — Artist Beauty{% endblock %}
+
+{% block content %}
+<section class="section form-section">
+  <h1>{{ title }}</h1>
+  <form method="post" class="big-form">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-field">
+        <label>{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}<small class="muted">{{ field.help_text }}</small>{% endif %}
+        {% for error in field.errors %}<p class="error">{{ error }}</p>{% endfor %}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="javascript:history.back()" class="btn">Cancelar</a>
+  </form>
+</section>
+{% endblock %}
