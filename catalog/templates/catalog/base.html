@@ -35,13 +35,13 @@
       
           <form method="post" action="{% url 'logout' %}" style="display:inline">
             {% csrf_token %}
-            <button type="submit" class="link-button">
+            <button type="submit" class="api-link logout-btn">
               Salir ({{ user.username }})
             </button>
           </form>
       
         {% else %}
-          <a href="{% url 'login' %}">Entrar</a>
+          <a href="{% url 'login' %}" class="api-link">Entrar</a>
           <a href="{% url 'signup' %}">Registrarse</a>
         {% endif %}
       </nav>
