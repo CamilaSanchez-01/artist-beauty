@@ -38,7 +38,7 @@
       <a href="{% url 'login' %}?next={{ request.path }}" class="btn">♡ Inicia sesión para guardar</a>
     {% endif %}
 
-    {% if user.is_authenticated %}
+    {% if user.is_staff %}
       <p style="margin-top:1rem;">
         <a href="{% url 'product_edit' product.slug %}" class="btn">Editar</a>
         <a href="{% url 'product_delete' product.slug %}" class="btn btn-danger">Eliminar</a>
