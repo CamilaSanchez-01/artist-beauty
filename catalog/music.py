@@ -199,6 +199,8 @@ PRODUCT_AUDIO_MAP = {
         'title': 'Dance Again — Jennifer Lopez',
         'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d1/26/7f/d1267f37-ae4b-8176-7066-67787afd4195/mzaf_16242458862458331824.plus.aac.p.m4a',
     },
+}
+
 SAMPLE_PRODUCT_AUDIOS = [
     {
         'title': 'Ritmo Soothing',
