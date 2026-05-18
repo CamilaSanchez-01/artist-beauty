@@ -22,20 +22,28 @@
         <a href="{% url 'home' %}">Inicio</a>
         <a href="{% url 'product_list' %}">Productos</a>
         <a href="{% url 'playlist' %}">♪ Playlist</a>
+      
         {% if user.is_authenticated %}
           <a href="{% url 'wishlist' %}">♥ Favoritos</a>
-          <a href="{% url 'artist_create' %}">+ Artista</a>
-          <a href="{% url 'product_create' %}">+ Producto</a>
-          <a href="/admin/">Admin</a>
+      
+          {% if user.is_staff %}
+            <a href="{% url 'artist_create' %}">+ Artista</a>
+            <a href="{% url 'product_create' %}">+ Producto</a>
+            <a href="/admin/">Admin</a>
+            <a href="/api/" class="api-link">API</a>
+          {% endif %}
+      
           <form method="post" action="{% url 'logout' %}" style="display:inline">
             {% csrf_token %}
-            <button type="submit" class="link-button">Salir ({{ user.username }})</button>
+            <button type="submit" class="link-button">
+              Salir ({{ user.username }})
+            </button>
           </form>
+      
         {% else %}
           <a href="{% url 'login' %}">Entrar</a>
           <a href="{% url 'signup' %}">Registrarse</a>
         {% endif %}
-        <a href="/api/" class="api-link">API</a>
       </nav>
     </div>
   </header>
@@ -53,8 +61,13 @@
   </main>
 
   <footer class="footer">
-    <p>Artist Beauty © 2026 — Proyecto académico Meta 4.3 · Ana</p>
-    <p><a href="/api/">API REST</a> · <a href="/admin/">Panel Admin</a></p>
+    <p>Artist Beauty © 2026 — Proyecto académico </p>
+    {% if user.is_staff %}
+      <p>
+        <a href="/api/">API REST</a> ·
+        <a href="/admin/">Panel Admin</a>
+      </p>
+    {% endif %}
   </footer>
 
   <div class="floating-player persistent-player" id="persistent-player" aria-live="polite">
