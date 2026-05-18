@@ -105,6 +105,62 @@ PRODUCT_AUDIO_MAP = {
         'title': 'Atmosphere — Joy Division',
         'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/8b/14/b0/8b14b02e-690f-4b7f-79b8-c35c69cacdb5/mzaf_10831524843963161836.plus.aac.p.m4a',
     },
+    
+    # =========================
+    # LADY GAGA
+    # =========================
+
+    'lady-gaga-haus-labs-foundation': {
+        'title': 'Bad Romance — Lady Gaga',
+        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music211/v4/4e/c4/cb/4ec4cba8-0447-e07d-7b4a-fec980606dea/mzaf_A1476727864.rmhq.aac.wa.mp4',
+    },
+
+    'lady-gaga-haus-labs-lip-oil': {
+        'title': 'Poker Face — Lady Gaga',
+        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music211/v4/30/84/c7/3084c70f-61b6-d7d6-e3e2-b1289324a4b7/mzaf_A1476727861.rmhq.aac.wa.mp4',
+    },
+
+    # =========================
+    # HALSEY
+    # =========================
+
+    'halsey-about-face-foundation': {
+        'title': 'Without Me — Halsey',
+        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music211/v4/12/76/cc/1276ccc6-00e0-0dc3-a819-4d9690c47253/mzaf_A1170699703.rmhq.aac.wa.mp4',
+    },
+
+    'halsey-about-face-lip-color': {
+        'title': 'Colors — Halsey',
+        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music211/v4/12/76/cc/1276ccc6-00e0-0dc3-a819-4d9690c47253/mzaf_A1170699703.rmhq.aac.wa.mp4',
+    },
+
+    # =========================
+    # GWEN STEFANI
+    # =========================
+
+    'gwen-stefani-gxve-lipstick': {
+        'title': 'Hollaback Girl — Gwen Stefani',
+        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music221/v4/2e/3f/a0/2e3fa0ac-350e-8ff8-d2ac-d2cab1d0178b/mzaf_A1452870036.rmhq.aac.wa.mp4',
+    },
+
+    'gwen-stefani-gxve-eyeliner': {
+        'title': 'The Sweet Escape — Gwen Stefani',
+        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music221/v4/67/07/52/67075233-8ad5-752f-168c-98a09bddc92e/mzaf_A1452870050.rmhq.aac.wa.mp4',
+    },
+
+    # =========================
+    # JENNIFER LOPEZ
+    # =========================
+
+    'jlo-beauty-that-hit-single-gel-cream': {
+        'title': 'On The Floor — Jennifer Lopez',
+        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music211/v4/fe/dd/84/fedd84fe-7053-4c9e-0a29-3705735066dc/mzaf_A1440622264.rmhq.aac.wa.mp4',
+    },
+
+    'jlo-beauty-glow-serum': {
+        'title': 'Jenny From The Block — Jennifer Lopez',
+        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music221/v4/f8/b1/ca/f8b1ca91-e4c5-b9f0-9c4a-acd3654d776f/mzaf_A265144078.rmhq.aac.wa.mp4',
+    },
 }
 
 SAMPLE_PRODUCT_AUDIOS = [
@@ -141,3 +197,4 @@ def get_product_audio(product):
     idx = zlib.crc32(product.slug.encode('utf-8')) % len(SAMPLE_PRODUCT_AUDIOS)
     song = SAMPLE_PRODUCT_AUDIOS[idx]
     return song['url'], f"{song['title']} · {product.artist.name}"
+
