@@ -14,7 +14,17 @@
   --shadow: 0 4px 18px rgba(110, 70, 120, .12);
   --radius: 14px;
 }
+.auth-logo{
+    display:flex;
+    justify-content:center;
+    margin-bottom:20px;
+}
 
+.auth-logo-img{
+    width:90px;
+    height:90px;
+    object-fit:contain;
+}
 * { box-sizing: border-box; }
 
 body {
