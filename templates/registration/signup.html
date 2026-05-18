@@ -4,7 +4,15 @@
 
 {% block content %}
 <section class="section form-section" style="max-width:480px; margin:auto;">
-  <h1>Crear cuenta</h1>
+  <h1>
+    <div class="auth-logo">
+    <img src="https://res.cloudinary.com/dvozyvuxi/image/upload/v1779079049/Logo-modified_ti3xae.png"
+         alt="Artist Beauty Logo"
+         class="auth-logo-img">
+    </div>
+    
+    Crear cuenta
+  </h1>
   <form method="post" class="big-form">
     {% csrf_token %}
     {% for field in form %}
