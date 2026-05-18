@@ -81,6 +81,11 @@ a:hover { color: var(--pink-dark); }
   background: var(--lavender); color: #fff !important;
   padding: .35em .8em; border-radius: 999px; font-size: .8rem;
 }
+.logout-btn{
+  border:none;
+  cursor:pointer;
+  font:inherit;
+}
 .link-button {
   background: none; border: none; color: var(--ink);
   cursor: pointer; font: inherit; padding: 0;
