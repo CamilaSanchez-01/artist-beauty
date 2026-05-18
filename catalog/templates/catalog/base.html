@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png"
+  href="https://res.cloudinary.com/dvozyvuxi/image/upload/v1779079049/Logo-modified_ti3xae.png">
+  
   <title>{% block title %}Artist Beauty{% endblock %}</title>
   <link rel="stylesheet" href="{% static 'catalog/css/style.css' %}">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -11,7 +14,9 @@
 <body>
   <header class="navbar">
     <div class="nav-container">
-      <a href="{% url 'home' %}" class="logo">✨ Artist Beauty</a>
+      <a href="{% url 'home' %}" class="logo"> <img src="https://res.cloudinary.com/dvozyvuxi/image/upload/v1779079049/Logo-modified_ti3xae.png"
+         alt="Artist Beauty Logo"
+         class="site-logo"> Artist Beauty</a>
       <nav>
         <a href="{% url 'home' %}">Inicio</a>
         <a href="{% url 'product_list' %}">Productos</a>
