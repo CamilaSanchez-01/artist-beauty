@@ -105,64 +105,100 @@ PRODUCT_AUDIO_MAP = {
         'title': 'Atmosphere — Joy Division',
         'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/8b/14/b0/8b14b02e-690f-4b7f-79b8-c35c69cacdb5/mzaf_10831524843963161836.plus.aac.p.m4a',
     },
-    
-    # =========================
+     # =========================
     # LADY GAGA
     # =========================
-
+    
     'lady-gaga-haus-labs-foundation': {
         'title': 'Bad Romance — Lady Gaga',
-        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music211/v4/4e/c4/cb/4ec4cba8-0447-e07d-7b4a-fec980606dea/mzaf_A1476727864.rmhq.aac.wa.mp4',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/1b/54/f0/1b54f0b7-db6a-1a40-6af8-4ae4650d8d6d/mzaf_2782647211171496826.plus.aac.p.m4a',
     },
-
+    
     'lady-gaga-haus-labs-lip-oil': {
         'title': 'Poker Face — Lady Gaga',
-        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music211/v4/30/84/c7/3084c70f-61b6-d7d6-e3e2-b1289324a4b7/mzaf_A1476727861.rmhq.aac.wa.mp4',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/7b/d4/b9/7bd4b972-99ea-4ce7-9042-615a894173a4/mzaf_17216069970734143078.plus.aac.p.m4a',
     },
-
+    
+    'lady-gaga-haus-labs-blush': {
+        'title': 'Rain On Me — Lady Gaga',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/47/3b/65/473b6523-131c-4c73-f774-158c1abbc3eb/mzaf_16291488932735455549.plus.aac.p.m4a',
+    },
+    
+    'lady-gaga-haus-labs-eyeliner': {
+        'title': 'Born This Way — Lady Gaga',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/9c/7a/54/9c7a54a6-f2a7-8d8e-1d13-4fe110fddf38/mzaf_3987088489827294384.plus.aac.p.m4a',
+    },
+    
+    'lady-gaga-haus-labs-highlighter': {
+        'title': 'Applause — Lady Gaga',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/5e/d7/a2/5ed7a263-1691-2010-da59-1f4ec093b90a/mzaf_6117100412983656708.plus.aac.p.m4a',
+    },
+    
+    'lady-gaga-haus-labs-mascara': {
+        'title': 'Shallow — Lady Gaga',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/77/41/4c/77414c83-2297-fb9f-7d38-47a03ab56d8f/mzaf_17756500385136857934.plus.aac.p.m4a',
+    },
     # =========================
     # HALSEY
     # =========================
-
+    
     'halsey-about-face-foundation': {
         'title': 'Without Me — Halsey',
-        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music211/v4/12/76/cc/1276ccc6-00e0-0dc3-a819-4d9690c47253/mzaf_A1170699703.rmhq.aac.wa.mp4',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a1/96/ee/a196ee27-727a-7911-6207-8d2904aac4c1/mzaf_5972923977565050863.plus.aac.p.m4a',
     },
-
+    
     'halsey-about-face-lip-color': {
         'title': 'Colors — Halsey',
-        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music211/v4/12/76/cc/1276ccc6-00e0-0dc3-a819-4d9690c47253/mzaf_A1170699703.rmhq.aac.wa.mp4',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bd/f9/b9/bdf9b9b2-eaa4-4461-6079-aaacc6df7316/mzaf_17327312786932455493.plus.aac.p.m4a',
     },
-
-    # =========================
-    # GWEN STEFANI
-    # =========================
-
-    'gwen-stefani-gxve-lipstick': {
-        'title': 'Hollaback Girl — Gwen Stefani',
-        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music221/v4/2e/3f/a0/2e3fa0ac-350e-8ff8-d2ac-d2cab1d0178b/mzaf_A1452870036.rmhq.aac.wa.mp4',
+    
+    'halsey-about-face-eye-paint': {
+        'title': 'Nightmare — Halsey',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/3e/d8/06/3ed8065d-1a50-625b-b995-3e653b32701f/mzaf_6014038911874968955.plus.aac.p.m4a',
     },
-
-    'gwen-stefani-gxve-eyeliner': {
-        'title': 'The Sweet Escape — Gwen Stefani',
-        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music221/v4/67/07/52/67075233-8ad5-752f-168c-98a09bddc92e/mzaf_A1452870050.rmhq.aac.wa.mp4',
+    
+    'halsey-about-face-cheek-freak': {
+        'title': 'Graveyard — Halsey',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/47/f7/a3/47f7a342-7a2e-9005-9605-cb6275d8bcc0/mzaf_8698601067572093492.plus.aac.p.m4a',
     },
-
+    
+    'halsey-about-face-matte-fix': {
+        'title': 'Bad At Love — Halsey',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/5b/58/a4/5b58a42c-8bd2-343b-902f-0ff2eef75782/mzaf_4415174550656631789.plus.aac.p.m4a',
+    },
+    
+    'halsey-about-face-fractal-glitter': {
+        'title': 'You should be sad — Halsey',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/38/eb/a2/38eba210-a804-0534-20f4-a3435093f0b4/mzaf_13239253188955232407.plus.aac.p.m4a',
+    },
     # =========================
     # JENNIFER LOPEZ
     # =========================
-
+    
     'jlo-beauty-that-hit-single-gel-cream': {
         'title': 'On The Floor — Jennifer Lopez',
-        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music211/v4/fe/dd/84/fedd84fe-7053-4c9e-0a29-3705735066dc/mzaf_A1440622264.rmhq.aac.wa.mp4',
+        'url': 'https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/Music/76/f5/46/mzm.fgyrzuwc.aac.p.m4a',
     },
-
+    
     'jlo-beauty-glow-serum': {
         'title': 'Jenny From The Block — Jennifer Lopez',
-        'url': 'https://aod-ssl.itunes.apple.com/itunes-assets/Music221/v4/f8/b1/ca/f8b1ca91-e4c5-b9f0-9c4a-acd3654d776f/mzaf_A265144078.rmhq.aac.wa.mp4',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/b2/a3/42/b2a342b3-47a3-7d5c-c6b0-2b288f1cf091/mzaf_17014161434593598911.plus.aac.p.m4a',
     },
-}
-
+    
+    'jlo-beauty-firming-body-butter': {
+        'title': 'Love Don’t Cost a Thing — Jennifer Lopez',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/54/00/1b/54001bea-2f7a-65db-b5b0-62a56ca69447/mzaf_16533168308152363902.plus.aac.p.m4a',
+    },
+    
+    'jlo-beauty-bronzing-glow': {
+        'title': 'Waiting for Tonight — Jennifer Lopez',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/73/f1/59/73f1599f-b20e-4bda-9d24-167a55edb9b1/mzaf_16279959302221601258.plus.aac.p.m4a',
+    },
+    
+    'jlo-beauty-radiance-mask': {
+        'title': 'Dance Again — Jennifer Lopez',
+        'url': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d1/26/7f/d1267f37-ae4b-8176-7066-67787afd4195/mzaf_16242458862458331824.plus.aac.p.m4a',
+    },
 SAMPLE_PRODUCT_AUDIOS = [
     {
         'title': 'Ritmo Soothing',
