@@ -13,7 +13,7 @@
     <p class="muted">creada por {{ artist.name }}</p>
     <p>{{ artist.bio }}</p>
 
-    {% if user.is_authenticated %}
+    {% if user.is_staff %}
       <p>
         <a href="{% url 'artist_edit' artist.slug %}" class="btn">Editar</a>
         <a href="{% url 'artist_delete' artist.slug %}" class="btn btn-danger">Eliminar</a>
