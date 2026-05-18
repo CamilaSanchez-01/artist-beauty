@@ -4,7 +4,14 @@
 
 {% block content %}
 <section class="section form-section" style="max-width:420px; margin:auto;">
-  <h1>Iniciar sesión</h1>
+  <h1>
+    <div class="auth-logo">
+    <img src="https://res.cloudinary.com/dvozyvuxi/image/upload/v1779079049/Logo-modified_ti3xae.png"
+         alt="Artist Beauty Logo"
+         class="auth-logo-img">
+    </div>
+    
+    Iniciar sesión</h1>
   <form method="post" class="big-form">
     {% csrf_token %}
     {% for field in form %}
